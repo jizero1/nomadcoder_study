@@ -49,16 +49,33 @@
         )
     }
     
+    // 스위치를 만들고싶음. km/miles변환기 만들기.
     function KmToMiles() {
         return <h3>KM 2 M</h3>;
     };
     
+    // 컴포넌트는 내부에 다른 컴포넌트 렌더링도 가능하다.
+    // 내부에 2개의 컴포넌트를 렌더링 하고있음.
+    
     function App() {
+        // index는 데이터, setIndex는 데이터를 수정하는 함수
+        // setIndex로 데이터를 수정하면 UI를 다시 렌더링함.
+        const [index, setIndex] = React.useState(0);
+        // 사용자의 선택 저장
+        const onSelect = (event) => {
+            setIndex(event.target.value);
+        };
+        // 사용자의 
+
         return (
             <div>
                 <h1>Super Converter</h1>
-                <MinutesToHours/>
-                <KmToMiles/>
+                <select value={index} onChange={onSelect}>
+                    <option value="0">Minutes & Hours</option>
+                    <option value="1"> KM & Miles</option>
+                </select>
+                {index === "0" ? <MinutesToHours/> : null}
+                {index === "1" ? <KmToMiles/> : null}
             </div>
         )
     }
